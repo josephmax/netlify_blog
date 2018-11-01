@@ -1,0 +1,10 @@
+/staging/
+/.tmp/
+node_modules/
+yarn.lock
+/backup/
+.rpt2_cache
+.forestry/
+.directory
+.vscode/
+/docs/

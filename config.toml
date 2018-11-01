@@ -1,0 +1,101 @@
+baseURL = "https://josephme.netlify.com/"
+languageCode = "zh-cn"
+title = "Joseph Mind Clips"
+metaDataFormat = "yaml"
+
+theme = "canoe"
+
+# use typora to editor new posts
+newContentEditor = "typora"
+
+# last mod time support
+enableGitInfo = true
+
+# if true, auto-detect Chinese/Japanese/Korean Languages in the content. (.Summary and .WordCount can work properly in CJKLanguage)
+hasCJKLanguage = true
+
+# DO　NOT MODIFY THIS CONFIG/不要修改这个配置
+publishDir = "docs"
+
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  author = "Joseph Cheung"
+  description = "good day"
+  copyright = "no copy no right"
+  # date format convert: http://fuckinggodateformat.com/
+  dateFormat = "2006年01月2日"
+  # 用户头像地址, user avatar's url
+  logo = "./img/avatar.jpeg"
+
+  # 首页横幅的背景链接, home banner's background url.
+  splash_bg = "./img/profile-bg.jpg"
+
+  # 是否使用一言, if using hitokoto(dynamic moto phase in the home banner)
+  hitokoto = true
+
+  
+# comment settings, support 'valine' and 'disqus'.
+# more about 'valine', ref: http://valine.js.org/
+[params.comment]
+  type = "valine"
+
+[params.comment.valine]
+  id = "drenIDLMO3yTwiuCl7Hva9nq-gzGzoHsz"
+  key = "rfotKaw6cevwHhOR8FvhwPAp"
+  placeholder = "写点什么吧..."
+  avatar = "retro"
+
+[params.comment.disqus]
+  shortname = 'josephmax'
+
+
+# Main menu
+[[menu.main]]
+    name = "Home"
+    # associated with displaying order.
+    weight = 1 
+    url = "./"
+
+[[menu.main]]
+    name = "Archive"
+    weight = 2
+    url = "./archive/"
+    
+[[menu.main]]
+    name = "About"
+    weight = 6
+    url = "./about/"
+
+
+
+# 文章归类 Taxonomy
+[[menu.taxonomy]]
+  name = "Tag"
+  identifier="tags"
+
+[[menu.taxonomy]]
+  name = "Category"
+  identifier="categories"
+
+#  友情链接 Your Friend's blog links
+
+# 社交账号 Social Network
+[[menu.social]]
+  pre = "<svg class='svg-icons svg-icons-github'><use xlink:href='#svg-icons-github'></use></svg>"
+  name = "Github"
+  url = "https://github.com/josephmax"
+
+
+[[menu.social]]
+  pre = "<svg class='svg-icons svg-icons-sina-weibo'><use xlink:href='#svg-icons-sina-weibo'></use></svg>"
+  name = "Weibo"
+  url = "https://weibo.com/u/2287885900"
+
+
+[blackfriday]
+  extensions = ["laxHtmlBlocks","noEmptyLineBeforeBlock","hardLineBreak"]

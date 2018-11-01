@@ -1,0 +1,61 @@
+<script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.1.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/typescript.min.js"></script>
+<script>
+  hljs.configure({
+    tabReplace: '  '
+  })
+  hljs.registerLanguage("graphql", function (e) { return { aliases: ["gql"], k: { keyword: "query mutation subscription|10 type interface union scalar fragment|10 enum on ...", literal: "true false null" }, c: [e.HCM, e.QSM, e.NM, { cN: "type", b: "[^\\w][A-Z][a-z]", e: "\\W", eE: !0 }, { cN: "literal", b: "[^\\w][A-Z][A-Z]", e: "\\W", eE: !0 }, { cN: "variable", b: "\\$", e: "\\W", eE: !0 }, { cN: "keyword", b: "[.]{2}", e: "\\." }, { cN: "meta", b: "@", e: "\\W", eE: !0 }], i: /([;<']|BEGIN)/ } });
+  hljs.initHighlightingOnLoad();
+  // hljs.initLineNumbersOnLoad();
+</script>
+
+
+<script type="text/javascript" src="{{$.Site.BaseURL }}/js/polyfill.js"></script>
+<script type="text/javascript" src="{{ $.Site.BaseURL }}/js/index.js"></script>
+<!---->
+{{ with .Site.Params.analytics }}
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', '{{ . }}', 'auto');
+  ga('send', 'pageview');
+
+</script> {{ end }}
+<script src="/service-worker.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
+      reg.onupdatefound = function() {
+        var installingWorker = reg.installing;
+        installingWorker.onstatechange = function() {
+          switch (installingWorker.state) {
+            case 'installed':
+              if (navigator.serviceWorker.controller) {
+                console.log('New or updated content is available.');
+              } else {
+                console.log('Content is now available offline!');
+              }
+              break;
+            case 'redundant':
+              console.error('The installing service worker became redundant.');
+              break;
+          }
+        };
+      };
+    }).catch(function(e) {
+      console.error('Error during service worker registration:', e);
+    });
+  });
+}
+</script>
+</body>
+
+</html>

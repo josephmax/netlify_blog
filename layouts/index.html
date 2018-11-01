@@ -1,0 +1,9 @@
+{{ partial "header.html" . }}
+<!-- banner -->
+{{ partialCached "splash.html" . }}
+<!-- banner -->
+<main id="index" role="main" class="main-panel">
+  {{partial "waterfall.html" .}} {{ partialCached "footer.html" . }}
+</main>
+<!-- banner -->
+{{partialCached "script.html" .}}

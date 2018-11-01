@@ -1,0 +1,28 @@
+{{ partial "header.html" . }} {{ $site := .Site }} {{ $data := .Data }}
+<main id="terms" role="main" class="main-panel">
+  <div class="page-content">
+    <div class="container container-ex">
+      <div class="inner">
+        <div class="post-wrapper">
+          <div class="post reveal no-toc">
+            <div class="card">
+              {{ partial "breadcrumb.html" . }}
+              <div class="card-content">
+                {{ range $key, $value := .Data.Terms.Alphabetical }}
+                <div class="chip">
+                  <a class="unstyled" href='{{ $site.BaseURL }}/{{ $data.Plural }}/{{ (replace $value.Name "#" "%23") | urlize }}'>
+                    {{ $value.Name }}
+                  </a>
+                  <sup class="tagcount">{{ $value.Count }}</sup>
+                </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ partialCached "footer.html" . }}
+</main>
+{{partialCached "script.html" .}}

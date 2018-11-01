@@ -1,0 +1,5 @@
+{{ partial "header.html" . }}
+<main id="list" role="main" class="main-panel">
+  {{partial "waterfall.html" .}} {{ partialCached "footer.html" . }}
+</main>
+{{partialCached "script.html" .}}

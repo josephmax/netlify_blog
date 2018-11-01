@@ -1,0 +1,252 @@
+.navbar {
+  width: 100%;
+  .nav-container {
+    @extend .z-depth-1;
+    background-color: $primary-color;
+    height: $navbar-height;
+    line-height: $navbar-line-height;
+  }
+
+  &,
+  a {
+    color: $navbar-font-color;
+  }
+
+  i.material-icons {
+    display: block;
+    font-size: 24px;
+    height: $navbar-height;
+    line-height: $navbar-line-height;
+  }
+  .nav-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+
+  // Collapse button
+  .button-collapse {
+    flex: none;
+    position: relative;
+    z-index: 1;
+    height: $navbar-height;
+    margin: 0 10px;
+  }
+
+  // Logo
+  .brand-logo {
+    flex: none;
+    color: $navbar-font-color;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: $navbar-brand-font-size;
+    margin: 0 10px;
+    transition: flex 0.2s, margin 0.2s, width 0.2s, -ms-flex 0.2s;
+    i.material-icons {
+      font-size: $navbar-brand-font-size;
+      float: left;
+      margin-right: 15px;
+    }
+  }
+
+  // Title
+  .nav-title {
+    display: inline-block;
+    font-size: 32px;
+    padding: 28px 0;
+  }
+
+  form.nav-form {
+    position: relative;
+    background: lighten($primary-color, 10%);
+    border-radius: 2px;
+    flex: 0 1 auto;
+    margin: 0 $gutter-width/2;
+    transition: flex 0.2s, width 0.2s, -ms-flex 0.2s, background 0.2s;
+    .form-group {
+      line-height: 40px;
+      height: 40px;
+      padding: $gutter-width/2 $gutter-width;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      i.material-icons {
+        flex: none;
+        color: #ddd;
+        transition: color 0.2s;
+        line-height: inherit;
+        height: inherit;
+        margin-right: 10px;
+      }
+      @include placeholder {
+        color: #ddd;
+        transition: color 0.2s;
+      }
+      input {
+        color: #ddd;
+        transition: color 0.2s;
+
+        line-height: 1.2em;
+        height: inherit;
+        outline: none;
+        flex: 1 1 auto;
+        background: transparent;
+        -webkit-appearance: none;
+        border: none;
+        font-size: 14px;
+      }
+    }
+
+    .form-popout {
+      position: absolute;
+      background: #fff;
+      @extend .z-depth-1;
+      width: 100%;
+      max-height: calc(100vh - #{$navbar-height});
+      transform: translateY(-110%);
+      margin-top: ($navbar-height - 40px)/2;
+      visibility: hidden;
+      z-index: -1;
+      transition: transform 0.2s, visibility 0.2s;
+    }
+
+    &:hover {
+      background: lighten($primary-color, 15%);
+      i.material-icons,
+      input {
+        color: #fff;
+      }
+      @include placeholder {
+        color: #fff;
+      }
+    }
+  }
+
+  // Navbar Links
+  ul.nav-menu {
+    li {
+      transition: background-color 0.3s;
+      float: left;
+      padding: 0;
+      &.active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+    a {
+      transition: background-color 0.3s;
+      font-size: $navbar-font-size;
+      color: $navbar-font-color;
+      display: block;
+      padding: 0 15px;
+      cursor: pointer;
+      &.btn {
+        margin-top: -2px;
+        margin-left: 15px;
+        margin-right: 15px;
+        & > .material-icons {
+          height: inherit;
+          line-height: inherit;
+        }
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  ul.tabs {
+    flex: 1 1 0;
+    width: auto;
+    height: $navbar-height;
+    margin-left: $gutter-width;
+    overflow: hidden;
+    transition: flex 0.2s, margin 0.2s, width 0.2s, -ms-flex 0.2s;
+    .tab {
+      height: $navbar-height;
+      line-height: $navbar-line-height;
+      text-transform: initial;
+      a {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  ul.apps {
+    flex: none;
+  }
+
+  &.search-active {
+    ul.tabs {
+      flex: 0 0 auto;
+      visibility: hidden;
+      width: 0;
+      margin: 0;
+    }
+    form.nav-form {
+      flex: 1 1 auto;
+      background: #f7f7f7;
+      i.material-icons {
+        color: #757575;
+      }
+      input {
+        color: #212121;
+      }
+      @include placeholder {
+        color: #757575;
+      }
+      .form-popout {
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// Fixed Navbar
+.navbar-fixed {
+  position: relative;
+  height: $navbar-height;
+  z-index: 998;
+  .navbar {
+    position: fixed;
+  }
+}
+
+@media #{$medium-and-down} {
+  .navbar .brand-logo {
+    flex: 1 1 auto;
+  }
+
+  .navbar.search-active {
+    .button-collapse {
+      display: none;
+    }
+    .brand-logo {
+      flex: 0 0 auto;
+      padding: 0;
+      visibility: hidden;
+      width: 0;
+      margin: 0;
+    }
+  }
+}
+
+@media #{$small-and-down} {
+  .navbar.nav-extended .nav-wrapper {
+    min-height: $navbar-height-mobile;
+  }
+  .navbar .nav-container,
+  .navbar .nav-wrapper i,
+  .navbar a.button-collapse,
+  .navbar a.button-collapse i {
+    height: $navbar-height-mobile;
+    line-height: $navbar-line-height-mobile;
+  }
+  .navbar-fixed {
+    height: $navbar-height-mobile;
+  }
+}
