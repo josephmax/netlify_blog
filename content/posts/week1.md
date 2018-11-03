@@ -74,6 +74,8 @@ assert 模块提供了断言测试的函数，用于测试不变式。
 >    9. 若 Type(x) 为 Object 且 Type(y) 为 String 或 Number， 返回比较 ToPrimitive(x) == y 的结果。
 >    10. 返回 false。
 
+具体assert模块的方法如下:
+
 > - .equal/.notEqual 断言是/否相等(用`==`)
 > -	.deepEqual/.notDeepEqual 断言是/否深度相等(用`==`)
 > -	.strictEqual/.notStrictEqual 断言是/否严格相等(用`===`)
