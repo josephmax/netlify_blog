@@ -4,11 +4,13 @@ tags:
 - javascript
 - 模块化
 - 历史
+- NodeJS
+- CommonJS
 categories:
 - 周记
 title: 捋一捋javascript模块化演进史
 --- 
-_Joe按: 入行晚，上来就是vue+webpack，所以听人扯到AMD, RequireJS, CMD, CommonJS这些词总有种模凌两可的感觉。所以这次接机把这些名词的概念都理清楚。希望读完这篇的你和我一样，缕清这些问题，这些都是个啥?我们为什么曾经需要这些?为什么现在又不需要这些了?_
+_Joe按: 入行晚，上来就是vue+webpack，所以听人扯到AMD, RequireJS, CMD, CommonJS这些词总有种模凌两可的感觉。所以这次接机把这些名词的概念都理清楚。希望读完这篇的你和我一样，缕清这些问题，这些都是个啥?我们为什么曾经需要这些?我们现在还在用哪些?那些没在用的为啥又不需要了?_
 
 ### 为什么要模块化?
 
@@ -106,7 +108,7 @@ YUI().use('hello', function(Y){
 })
 ```
 
-<quote>这里的Y就是一个一个强沙箱，所有依赖模块通过 attach 的方式被注入沙盒，即在当前 YUI 实例上执行模块的初始化代码，使得模块在当前实例上可用</quote>
+<blockquote>这里的Y就是一个强沙箱，所有依赖模块通过 attach 的方式被注入沙盒，即在当前 YUI 实例上执行模块的初始化代码，使得模块在当前实例上可用</blockquote>
 
 ```
 // Sandbox Implementation
@@ -132,9 +134,8 @@ YUI同时也支持YUI-Combo的方式将多个资源合并成一个，进行压�
 
 ### 后来，JS走出了浏览器
 
-<quote>2009年，有人讨论将 JavaScript 引入服务器端。因此 ServerJS 诞生了。随后，ServerJS 将其名称改为 CommonJS 。
-CommonJS 不是一个 JavaScript 库。它是一个标准化组织。它就像 ECMA 或 W3C 一样。ECMA 定义了 JavaScript 的语言规范。W3C定义了 JavaScript web API ，比如 DOM 或 DOM 事件。 CommonJS 的目标是为 web 服务器、桌面和命令行应用程序定义一套通用的 API 。
-0</quote>
+<blockquote>2009年，有人讨论将 JavaScript 引入服务器端。因此 ServerJS 诞生了。随后，ServerJS 将其名称改为 CommonJS 。
+CommonJS 不是一个 JavaScript 库。它是一个标准化组织。它就像 ECMA 或 W3C 一样。ECMA 定义了 JavaScript 的语言规范。W3C定义了 JavaScript web API ，比如 DOM 或 DOM 事件。 CommonJS 的目标是为 web 服务器、桌面和命令行应用程序定义一套通用的 API 。</blockquote>
 
 Node.js遵循了CommonJS的规范，让JS走出了浏览器端，在CommonJS规范下所有JS代码的加载都是同步的。
 
@@ -147,12 +148,12 @@ Node.js遵循了CommonJS的规范，让JS走出了浏览器端，在CommonJS规�
 ```
 
 也就是说node环境下执行的js文件跟浏览器环境主要差别就是注入的这几个变量。
-- module: 表示本模块的对象，表达了本模块的加载情况，模块间关系，分配到的全局id等信息
-- exports: module.exports 的引用
-- require: 用于引入其它模块的方法
-- __filename: 当前文件路径名
-- __dirname: 当前文件夹路径名
-- global: 相当于浏览器环境下的window，全局变量
+- `module`: 表示本模块的对象，表达了本模块的加载情况，模块间关系，分配到的全局id等信息
+- `exports`: module.exports 的引用
+- `require`: 用于引入其它模块的方法
+- `__filename`: 当前文件路径名
+- `__dirname`: 当前文件夹路径名
+- `global`: 相当于浏览器环境下的window，全局变量
 
 CommonJs 非常巧妙地解决了服务器端的模块化加载问题。但是这种操作对浏览器来说却有一个无法回避的瓶颈。对于浏览器环境来说，加载一个个js模块意味着请求不同的资源，而对于服务器来说，只是本地IO微不足道的开销。
 
@@ -160,9 +161,9 @@ CommonJs 非常巧妙地解决了服务器端的模块化加载问题。但是�
 
 ### 尝到了甜头后回到浏览器，什么是AMD? 什么是CMD?
 
-在网络传输和本地IO效率差距悬殊的今天，首先不可回避的一点是，浏览器的资源管理依旧是异步的，与YUI的解决方案本质上并没有太多不同。作为一种规范，AMD和CMD所关注的，或者说想重新定义的是书写方式的问题。
+&emsp;&emsp;在网络传输和本地IO效率差距悬殊的今天，首先不可回避的一点是，浏览器的资源管理依旧是异步的，与YUI的解决方案本质上并没有太多不同。作为一种规范，AMD和CMD所关注的，或者说想重新定义的是书写方式的问题。
 
-从诞生年代来说，他们都在CommonJS和NodeJS之后，所以从书写上都受其影响，AMD和CMD在书写上的争议体现了两种思想的不同。下面我们具体说说不同。
+&emsp;&emsp;从概念上AMD(Async Module Definition)和CMD(Common Module Definition)对标的都是CommonJS，因为他俩也是一种规范而非具体的库。他们都诞生在CommonJS之后，所以从书写上都受其影响，AMD和CMD在书写上的争议体现了两种思想的不同。下面我们具体说说不同。
 
 
 假设在浏览器中使用CommonJs的范式去写代码
@@ -268,7 +269,7 @@ AMD基本由[RequireJS](https://github.com/requirejs/requirejs)作为载体，CM
 
 AMD和CMD的做法始终会用包裹+依赖注入的方式去写代码。而这样的范式在browserify和webpack面前显得没有优势可言。纷争的结束往往不是因为某一方的逐渐获胜，而是因为第三方的降维打击。
 
-Browserify问题的方式非常彻底，既然试图在浏览器端写nodeJs范式的模块，那你写你的，中间加一层编译就是了嘛。browserify通过词法分析依赖关系，直接把所有的依赖代码打包在一起进行压缩混淆。没有什么同步异步的依赖注入管理过程。
+Browserify解决问题的方式非常彻底，既然试图在浏览器端写nodeJs范式的模块，那你写你的，中间加一层编译就是了嘛。browserify通过词法分析依赖关系，直接把所有的依赖代码打包在一起进行压缩混淆。没有什么同步异步的依赖注入管理过程。
 
 同时通过watchify来检测源代码变化做实时重编译。并且通过sourceMap逆向追溯所有的合并压缩和混淆。至此看上去是个很完善的开发方案。用nodejs的方式写代码，watchify监听变化，实时转译成新的文件供预览，调试。
 
@@ -335,6 +336,8 @@ var config = {
     ],
 };
 ```
+
+其实webpack过后还是有不少后起之秀做过类似的实现，如主打tree-shaking的rollup(后来webpack2跟牌tree-shaking)，如主打零配置的parcel(后来webpack4跟牌零配置)，可见webpack不愧是个比狠人多一点的狼人，上位以来始终勤于技术更新，保持最大最全的业界定位。
 
 [更多webpack的干货](https://github.com/petehunt/webpack-howto)
 
