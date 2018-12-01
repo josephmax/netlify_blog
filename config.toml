@@ -45,8 +45,8 @@ publishDir = "docs"
   type = "valine"
 
 [params.comment.valine]
-  id = "drenIDLMO3yTwiuCl7Hva9nq-gzGzoHsz"
-  key = "rfotKaw6cevwHhOR8FvhwPAp"
+  id = "xkNNqfFR960yYzzsc8QElWTs-gzGzoHsz"
+  key = "Huu4ic7dFIivmV4OfQku3AOR"
   placeholder = "写点什么吧..."
   avatar = "retro"
 
