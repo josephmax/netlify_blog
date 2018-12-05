@@ -38,6 +38,8 @@ publishDir = "docs"
   # 是否使用一言, if using hitokoto(dynamic moto phase in the home banner)
   hitokoto = true
 
+  aliyunAnalytics = true
+
   
 # comment settings, support 'valine' and 'disqus'.
 # more about 'valine', ref: http://valine.js.org/
