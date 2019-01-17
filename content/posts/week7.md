@@ -11,7 +11,7 @@ title: 符合CSP策略的非阻塞式script脚本加载器
 
 _Joe按: 翻译自[A CSP Compliant non-blocking script loader](https://calendar.perfplanet.com/2018/a-csp-compliant-non-blocking-script-loader/), 原著[Philip Tellis](https://twitter.com/bluesmoon) & [Allan Wirth](https://twitter.com/Allan_Wirth)_
 
-在2012年的性能日报中，我发布了我们在LogNormal/SOASTA项目中研发的[非阻塞script加载模式](https://calendar.perfplanet.com/2012/the-non-blocking-script-loader-pattern/)，该技术用于在关键渲染路径(Critical Rendering Path)外加载第三方javascript并确保不会对客户页面造成单点故障(SPoF)。
+在2012年的性能历刊中，我发布了我们在LogNormal/SOASTA项目中研发的[非阻塞script加载模式](https://calendar.perfplanet.com/2012/the-non-blocking-script-loader-pattern/)，该技术用于在关键渲染路径(Critical Rendering Path)外加载第三方javascript并确保不会对客户页面造成单点故障(SPoF)。
 
 非阻塞script加载模式不像script的async和defer属性那样仍旧对script的onload事件造成阻塞，它允许javascript脚本完全不按顺序加载，永不阻塞，甚至允许script从未加载。
 自2012年以来发生了很多变化。浏览器现在有新的方法在不阻塞页面的情况下加载script，而像CSP（Content Security Policy内容安全策略）这样的安全标准，以及一些XSS和CSRF检查器使得JavaScript中iframe的使用变得困难重重。因为我们在iframe内部使用的`document.write`方法也存在问题，因为Chrome现在会上报并认为即使在匿名iframe中使用也是不安全的。
@@ -175,7 +175,7 @@ CSP的合规在内联script脚本中表现最佳，如果script内容不发生�
 
 ### 完整代码
 
-完整代码在[github gist](https://gist.github.com/bluesmoon/675c37368ddd58dfa5f578f1e5a59778)中。它还包含一个iframe子窗口脚本用的dom遍历器，如果script脚本加载并初始化完成之后父级iframe修改了`document.domain`，这时就会用到它。
+完整代码在[github gist](https://gist.github.com/bluesmoon/675c37368ddd58dfa5f578f1e5a59778)中。它还包含一个iframe子窗口脚本用的域名遍历器，如果script脚本加载并初始化完成之后父级iframe修改了`document.domain`，这时就会用到它。
 
 ### 加载器
 
@@ -304,7 +304,7 @@ Content-Security-Policy: script-src sha256-N17tpZTa695DVQJ0H+pRpxvMH/27hbTyxTdTu
 </script>
 ```
 
-### DOM 遍历器
+### 域名遍历器
 
 把这段代码放在你的脚本开头，任何时候你都能通过调用它安全地访问父窗口
 ```
