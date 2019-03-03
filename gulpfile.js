@@ -213,7 +213,7 @@ gulp.task("build:dev", cb => {
 
 gulp.task("build", ["clean"], cb => {
   env = "prod";
-  run("build:dev", "purifycss", ["rev", "htmlmin"], "ref", "generate-service-worker",cb);
+  run("build:dev", ["rev", "htmlmin"], "ref", "generate-service-worker",cb);
 });
 
 gulp.task("serve", ["build:dev"], () => {
