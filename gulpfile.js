@@ -175,7 +175,7 @@ gulp.task("purifycss", () => {
   const base = env === "theme" ? `${themeDir}` : `${devDir}`;
   return gulp
     .src(`${base}/**/*.css`)
-    .pipe(purifycss([`${base}/**/*.html`, `${base}/**/*.js`]))
+    // .pipe(purifycss([`${base}/**/*.html`, `${base}/**/*.js`]))
     .pipe(
       postcss([
         require("autoprefixer")({ browsers: c.browserslist }),
@@ -213,7 +213,7 @@ gulp.task("build:dev", cb => {
 
 gulp.task("build", ["clean"], cb => {
   env = "prod";
-  run("build:dev", ["rev", "htmlmin"], "ref", "generate-service-worker",cb);
+  run("build:dev", "purifycss", ["rev", "htmlmin"], "ref", "generate-service-worker",cb);
 });
 
 gulp.task("serve", ["build:dev"], () => {
