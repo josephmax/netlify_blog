@@ -61,17 +61,17 @@ publishDir = "docs"
     name = "Home"
     # associated with displaying order.
     weight = 1 
-    url = "./"
+    url = "/"
 
 [[menu.main]]
     name = "Archive"
     weight = 2
-    url = "./archive/"
+    url = "/archive/"
     
 [[menu.main]]
     name = "About"
     weight = 6
-    url = "./about/"
+    url = "/about/"
 
 
 
