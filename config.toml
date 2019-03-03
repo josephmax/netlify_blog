@@ -1,4 +1,4 @@
-baseURL = "https://josephme.netlify.com/"
+baseURL = "https://josephme.netlify.com"
 languageCode = "zh-cn"
 title = "Joseph Mind Clips"
 metaDataFormat = "yaml"
