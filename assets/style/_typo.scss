@@ -203,17 +203,17 @@
       color: #fff;
       min-width: 30px;
       font-size: 12px;
-      text-align: left;
+      text-align: center;
     }
     td {
       border-top: 1px solid rgba(0, 0, 0, 0.05);
       border-left: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: left;
     }
     td,
     th {
       padding: 2px;
-      vertical-align: top;
-      text-align: center;
+      vertical-align: middle;
     }
   }
 
