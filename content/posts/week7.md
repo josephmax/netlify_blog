@@ -8,9 +8,8 @@ categories:
 - 翻译
 title: 符合CSP策略的非阻塞式script脚本加载器
 ---
-
-_Joe按: 翻译自[A CSP Compliant non-blocking script loader](https://calendar.perfplanet.com/2018/a-csp-compliant-non-blocking-script-loader/), 原著[Philip Tellis](https://twitter.com/bluesmoon) & [Allan Wirth](https://twitter.com/Allan_Wirth)_
-
+Joe按: 翻译自[A CSP Compliant non-blocking script loader](https://calendar.perfplanet.com/2018/a-csp-compliant-non-blocking-script-loader/), 原著[Philip Tellis](https://twitter.com/bluesmoon) & [Allan Wirth](https://twitter.com/Allan_Wirth)
+</br>
 在2012年的性能历刊中，我发布了我们在LogNormal/SOASTA项目中研发的[非阻塞script加载模式](https://calendar.perfplanet.com/2012/the-non-blocking-script-loader-pattern/)，该技术用于在关键渲染路径(Critical Rendering Path)外加载第三方javascript并确保不会对客户页面造成单点故障(SPoF)。
 
 非阻塞script加载模式不像script的async和defer属性那样仍旧对script的onload事件造成阻塞，它允许javascript脚本完全不按顺序加载，永不阻塞，甚至允许script从未加载。

@@ -194,11 +194,6 @@ _receivePropsAndState: function(nextProps, nextState, transaction) {
 |3|[ReactCompositeComponent.js forceUpdate](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactCompositeComponent.js#L672)|对外开放的API
 |4|[ReactCompositeComponent.js replaceState](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactCompositeComponent.js#L561)|不开放调用，只能通过另一个API触发，也就是我们最常用的setState，做一层封装是为了在setState的阶段收集各个setState提交上来的partialState进行合并。
 
-- [ReactComponent.js的replaceProps方法](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactComponent.js#L192) - 用于已废弃的`ReactComponent.update()`和`ReactComponent.updateAll()`, 只在测试代码里找到了调用，还有在初始化renderComponent的时候如果有缓存，会用来从缓存中更新节点。
-- [ReactComponent.js的mountComponentIntoNode方法](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactComponent.js#L310) - 顾名思义，mount新节点或首次渲染的时候会用。
-- [ReactCompositeComponent.js中的forceUpdate](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactCompositeComponent.js#L672) - 对外开放的API
-- [ReactCompositeComponent.js中的replaceState方法)](https://github.com/facebook/react/blob/v0.3.3/src/core/ReactCompositeComponent.js#L561) - 不开放调用，只能通过另一个API触发，也就是我们最常用的setState，做一层封装是为了在setState的阶段收集各个setState提交上来的partialState进行合并。
-
 ### 所以我们常说key在Reconciliation中的角色是什么呢？
 
 无论是react官网还是来自核心开发者[@vjeux](https://twitter.com/vjeux)关于[diff算法](https://calendar.perfplanet.com/2013/diff/)的知名文章，都强调key在管理组件生命周期中的重要性。那么为什么上述核心比对的函数中没有找到跟key相关的部分呢？
@@ -440,4 +435,4 @@ function flattenChildren(children) {
 
 [Reconciliation](<https://reactjs.org/docs/reconciliation.html>)
 
-[SCU]([https://reactjs.org/docs/optimizing-performance.html\#shouldcomponentupdate-in-action](https://reactjs.org/docs/optimizing-performance.html#shouldcomponentupdate-in-action))
+[SCU](https://reactjs.org/docs/optimizing-performance.html#shouldcomponentupdate-in-action)
