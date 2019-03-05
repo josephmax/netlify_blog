@@ -1,6 +1,7 @@
 ---
 date: 2019-02-27T16:00:30+08:00
 tags: 
+- javascript
 - 源码
 - react
 categories:

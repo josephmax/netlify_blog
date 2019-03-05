@@ -1,6 +1,7 @@
 ---
 date: 2019-02-22T18:00:30+08:00
 tags: 
+- javascript
 - 算法
 - algorithm
 - react
