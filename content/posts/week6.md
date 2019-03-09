@@ -72,7 +72,7 @@ class Router {
 
 其实知道了路由的原理，想要实现一个hash 路由并不困难，比较需要注意的是`backOff`的实现，包括hash router中对 `backOff`的实现也是有bug的，浏览器的回退会触发`hashChange` 所以会在`history`中 push 一个新的路径，也就是每一步都将被记录。所以需要一个`backIndex` 来作为返回的index的标识，在点击新的URL的时候再将`backIndex`回归为 `this.currentIndex`。
 
-### 基于 history 的路由实现
+#### 基于 history 的路由实现
 ```
 class Routers {
   constructor() {
@@ -207,7 +207,7 @@ this.setState({
 
 之所以把这个`subscribe`的函数写在`componentWillMount`里，就像源码中给出的注释：是为了SSR的时候，能够使用Redirect。
 
-### Route
+#### Route
 Route的作用是匹配路由，并传递给要渲染的组件props。
 
 在Route的`componentWillReceiveProps`中
@@ -256,7 +256,7 @@ react-routerr4提供了三种渲染组件的方法：`component` props，`render
 ```
 的话，由于每次的`props.component`都是新创建的，所以React在diff 的时候会认为进来了一个全新的组件，所以会将旧的组件unmount，再 re-mount。这时候就要使用`render`，少了一层包裹的component 元素，`render`展开后的元素类型每次都是一样的，就不会发生re-mount 了（children也不会发生re-mount）。
 
-### Switch
+#### Switch
 我们紧接着Route来看Switch，Switch是用来嵌套在Route的外面，当 Switch中的第一个Route匹配之后就不会再渲染其他的Route了。
 ```
   render() {
@@ -294,7 +294,7 @@ Switch也是通过`matchPath`这个函数来判断是否匹配成功，一直按
 
 接下来我们看下`matchPath`是如何判断`location`是否符合`path`的。
 
-### matchPath
+#### matchPath
 matchPath返回的是一个如下结构的对象
 ```
   {
@@ -322,7 +322,7 @@ let cacheCount = 0;
 
 加缓存的原因是路由页面大部分情况下都是相似的，比如要访问`/user/123`或`/users/234`，都会使用`/user/:id`这个path去匹配，没有必要每次都生成一个新的正则表达式。SPA在页面整个访问的过程中都维护着这份缓存。
 
-### Link
+#### Link
 实际上我们可能写的最多的就是Link这个标签了，我们从它的`render`函数开始看
 ```
   render() {
