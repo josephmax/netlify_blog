@@ -11,7 +11,7 @@ title: React router 4源码浅析
 _Joe按: 本文将从各类路由的实现原理入手，对 react-router的源码进行分析，来理解它是如何帮助我们管理路由状态的。_
 
 ### 路由
-在分析源码之前，先来对路由有一个认识。在SPA盛行之前，还不存在前端层面的路由概念，每个URL对应一个页面，所有的跳转或者链接都通过 <a> 标签来完成，随着SPA的逐渐兴盛及HTML5的普及，hash路由及基于history的路由库越来越多。
+在分析源码之前，先来对路由有一个认识。在SPA盛行之前，还不存在前端层面的路由概念，每个URL对应一个页面，所有的跳转或者链接都通过 \<a\>标签来完成，随着SPA的逐渐兴盛及HTML5的普及，hash路由及基于history的路由库越来越多。
 
 路由库最大的作用就是同步 URL 与其对应的回调函数。对于基于`history`的路由，它通过`history.pushState`来修改 URL，通过`window.addEventListener('popstate', callback)`来监听前进/后退事件；对于hash路由，通过操作`window.location`字符串来更改hash，通过`window.addEventListener('hashchange', callback) `来监听URL的变化。
 
