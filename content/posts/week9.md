@@ -2,11 +2,9 @@
 date: 2019-01-12T10:00:30+08:00
 tags: 
 - javascript
-- fiber
-- react
+- koa2
 categories:
 - 周记
-- 翻译
 title: koa2 源码浅析
 ---
 _Joe按：koa2源码浅析，真的浅。_
