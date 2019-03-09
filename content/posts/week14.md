@@ -177,6 +177,8 @@ console.log('script end')
 
 这种问题万变不离其宗，我们把javascript一次同步事件执行栈称为一个tick(毕竟执行不完就会卡在那里进不了下一个tick, 异步则不是这样)。碰到这样的问题，考点主要是在于你先要理解tick，setTimeout的会把函数的执行顺序丢到特定秒后去，即使是0也会跑到下一个tick去。另外要理解宏任务和微任务的区别，Promise的异步是基于微任务的执行。微任务的队列在每一个宏任务的tick的开头执行。大概情况看这张图吧。
 
+![IMAGE](/pimg/2813B9C9C84C91343C3EAB94BFFA6D92.jpg)
+
 那么不多说了用大脑模仿执行引擎去跑一下题目代码吧。
 
 1. 11行之前都是函数的定义没有执行所以队列里是空的，直到11行出现了第一个console.log。所以我们先输出<font color=green>**script start**</font>。
@@ -221,6 +223,8 @@ Promise.resolve().then(function(){
 [v8团队的解释](<https://v8.dev/blog/fast-async>)
 
 [ES next中async/await proposal实现原理是什么？ - justjavac的回答](https://www.zhihu.com/question/39571954/answer/148420891)
+
+[tc39的Brian Terlson的解释](https://www.reddit.com/r/javascript/comments/44b6y9/question_how_are_generators_and_asyncawait/czp1lxr/)
 
 ### 踩蛋区
 - 找资料的时候发现阮一峰老师在[描述]((http://www.ruanyifeng.com/blog/2015/04/generator.html))"协程与多线程"的时候还被评论区勘误了一波。在此马克一下，毕竟起初这个问题也的确困扰了我。generator的最大特点在于释放执行权和恢复执行，它本身不能够实现并发或异步。
